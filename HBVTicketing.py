@@ -9,7 +9,7 @@ users=df.User
 departments = df.Access
     
     
-def makeTitle(name):
+def makeSubject(name):
     print("Harbourview PROD Access to: " + name + "\n")
     
     
@@ -22,13 +22,19 @@ def makeBody(name, access):
           + "Permissions: " + access 
 + "\n----------------------------------------------------------")
 
-def sendTicket():
+def sendTickets():
     for i in range (len(users)):
         mail = outlook.CreateItem(0)
         mail.To = 'HARBOURVESTITEMAIL@harbourvest.com'
-        mail.Subject = makeTitle(users[i])
+        mail.Subject = makeSubject(users[i])
         mail.Body = makeBody(users[i], departments[i])
         mail.Send()
+        
+def main():
+    sendTicket()
+    
+if __name__ == '__main__': 
+    main()
 
 
 
