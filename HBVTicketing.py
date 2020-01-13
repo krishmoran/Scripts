@@ -1,5 +1,8 @@
 
 import pandas as pd
+import win32com.client as win32
+
+outlook = win32.Dispatch('outlook.application')
 df = pd.read_csv("UAL_HV.csv")
 
 users=df.User
@@ -19,9 +22,13 @@ def makeBody(name, access):
           + "Permissions: " + access 
 + "\n----------------------------------------------------------")
 
-for i in range (len(users)):
-    makeTitle(users[i])
-    makeBody(users[i], departments[i])
+def sendTicket():
+    for i in range (len(users)):
+        mail = outlook.CreateItem(0)
+        mail.To = 'HARBOURVESTITEMAIL@harbourvest.com'
+        mail.Subject = makeTitle(users[i])
+        mail.Body = makeBody(users[i], departments[i])
+        mail.Send()
 
 
 
