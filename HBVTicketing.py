@@ -35,7 +35,7 @@ def sendTickets():
         mail.Send()
         
 def main():
-    sendTicket()
+    sendTickets()
     
 if __name__ == '__main__': 
     main()
