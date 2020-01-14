@@ -9,7 +9,8 @@ outlook = win32.Dispatch('outlook.application')
 print("Input CSV must have a 'User' column which is the full name of a person needing access, e.g. John Doe \n" +
           "and an 'Access' column, which is a column describing access levels, like 'HVW Marketing BASIC'")
 
-df = pd.read_csv(input("Enter the exact filepath of the speadsheet with users and their access levels: \n"))
+df = pd.read_csv(input("Enter the exact filepath of the csv speadsheet with users and their access levels: \n" + 
+                       "e.g. C:/Users/johndoe/Documents/UAL.csv \n"))
 # df = pd.read_csv('C:/Users/kmoran/Documents/UAL_HV.csv')
 
 # establishes dataframes of the pertinent columns
@@ -31,12 +32,12 @@ def makeBody(name, access):
 
 # sends the ticket via email to IT utilizing the outlook desktop client
 def sendTickets():
-    for i in range(2):
+    for i in range(len(users)):
         subject = makeSubject(users[i])
         body = makeBody(users[i], departments[i])
     
         mail = outlook.CreateItem(0)
-        mail.To = 'kmoran@harbourvest.com'        
+        mail.To = 'helpdesk@harbourvest.com'        
         mail.Subject = subject
         mail.Body = body
         mail.Send()
