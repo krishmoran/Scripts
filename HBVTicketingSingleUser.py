@@ -23,7 +23,7 @@ def makeBody(name, access):
           + "Permissions: " + access)
 
 # sends the ticket via email to IT utilizing the outlook desktop client
-def sendTickets():
+def sendTicket():
     subject = makeSubject(name)
     body = makeBody(name, access)
     
@@ -36,7 +36,7 @@ def sendTickets():
     
         
 def main():
-    sendTickets()
+    sendTicket()
     
 if __name__ == '__main__': 
     main()
